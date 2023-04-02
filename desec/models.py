@@ -10,7 +10,7 @@ class RRSet(Base):
     subname: str
     type: str
     ttl: str
-    records: str
+    records: list[str]
 
 @dataclass
 class Domain(Base):
