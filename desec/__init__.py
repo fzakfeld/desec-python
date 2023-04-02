@@ -34,6 +34,13 @@ class Client():
             results.append(RRSet.from_dict(x))
         return results
     
+    def get_rrset(self, domain_name: str, subname: str, type: str, ) -> RRSet:
+        data = self.make_request(path=f"/domains/{domain_name}/rrsets/{subname}/{type}/")
+        try:
+            return RRSet.from_dict(data)
+        except:
+            return None
+    
     def create_rrset(self, domain_name: str, rrset: RRSet):
         self.make_request(path=f"/domains/{domain_name}/rrsets/", method="POST", data=rrset.to_json())
 
